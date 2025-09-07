@@ -29,7 +29,7 @@ namespace Ejercicio2.Models
 
         public override string ToString()
         {
-            return $"Código:{this.Codigo} - Mesa de {this.largo} x {this.ancho}";
+            return $"{this.Codigo}: Mesa de {this.largo} x {this.ancho}";
         }
     }
 }

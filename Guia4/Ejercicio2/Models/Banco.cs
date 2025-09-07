@@ -22,7 +22,7 @@ namespace Ejercicio2.Models
 
         public override string ToString()
         {
-            return $"Código:{this.Codigo} - Banco de {this.largo}";
+            return $"{this.Codigo}: Banco de {this.largo}";
         }
 
     }

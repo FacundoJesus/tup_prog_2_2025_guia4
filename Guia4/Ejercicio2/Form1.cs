@@ -33,6 +33,7 @@ namespace Ejercicio2
         {
             if (presupuesto != null)
             {
+                
                 double largo = Convert.ToDouble(tbLargo.Text);
                 double precioBase = Convert.ToDouble(tbPrecioBase.Text);
                 int codigo = Convert.ToInt32(tbCodigo.Text);
@@ -41,7 +42,6 @@ namespace Ejercicio2
                 if (rbBanco.Checked)
                 {
                     producto = new Banco(precioBase, largo);
-                    producto.Codigo = codigo;
                 }
                 else
                 if (rbMesa.Checked)
@@ -49,12 +49,13 @@ namespace Ejercicio2
                     double ancho = Convert.ToDouble(tbAncho.Text);
                     double grosor = Convert.ToDouble(tbGrosor.Text);
 
-                    producto = new Mesa(precioBase, largo, ancho, grosor);
-                    producto.Codigo = codigo;
+                    producto = new Mesa(precioBase, largo, ancho, grosor); 
                 }
-                presupuesto.AgregarProducto(producto);
-                cmbProductos.Items.Add(producto);
 
+                producto.Codigo = codigo;
+                presupuesto.AgregarProducto(producto);
+                cmbProductos.Items.Add(producto); // hace ToString()
+                
                 //Limpio campos
                 tbLargo.Clear();
                 tbPrecioBase.Clear();
@@ -63,6 +64,7 @@ namespace Ejercicio2
                 tbGrosor.Clear();
                 rbBanco.Checked = false;
                 rbMesa.Checked = false;
+               
             }
             else
             {
@@ -72,13 +74,14 @@ namespace Ejercicio2
 
         private void btnBorrarProducto_Click(object sender, EventArgs e)
         {
-            Producto prodSeleccionado = cmbProductos.SelectedItem as Producto;
+            Producto producto = (Producto)cmbProductos.SelectedItem;
 
-            if (prodSeleccionado != null)
+            if (producto != null)
             {
-                presupuesto.QuitarProducto(prodSeleccionado.Codigo);
+                
+                presupuesto.QuitarProducto(producto.Codigo);
 
-                cmbProductos.Items.Remove(prodSeleccionado);
+                cmbProductos.Items.Remove(producto);
                 cmbProductos.Text = "";
             }
             else
